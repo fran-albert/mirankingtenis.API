@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreatePlayerDto } from './dto/create-player.dto';
 import { UpdatePlayerDto } from './dto/update-player.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -36,7 +36,13 @@ export class PlayersService {
   }
 
   async findOne(id: number) {
-    return `This action returns a #${id} player`;
+    const player = await this.playerRepository.findOneBy({ id });
+
+    if (!player) {
+      throw new BadRequestException('Player not found');
+    }
+
+    return player;
   }
 
   async update(id: number, updatePlayerDto: UpdatePlayerDto) {
