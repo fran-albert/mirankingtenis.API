@@ -1,5 +1,5 @@
 import { Player } from '../../players/entities/player.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Category {
@@ -11,4 +11,7 @@ export class Category {
 
   @OneToMany(() => Player, (player) => player.category)
   players: Player[];
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 }
