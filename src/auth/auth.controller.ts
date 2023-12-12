@@ -11,7 +11,8 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
-
+  
+  @Auth(Role.ADMIN)
   @Post('register')
   register(
     @Body()
