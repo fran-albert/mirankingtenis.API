@@ -65,4 +65,8 @@ export class AuthService {
       email: player.email,
     };
   }
+
+  async getProfile({email, roles} : {email: string; roles:string}){
+    return await this.playersService.findOneByEmail(email);
+  }
 }
