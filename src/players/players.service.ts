@@ -35,15 +35,19 @@ export class PlayersService {
     return await this.playerRepository.find();
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     return `This action returns a #${id} player`;
   }
 
-  update(id: number, updatePlayerDto: UpdatePlayerDto) {
-    return `This action updates a #${id} player`;
+  async update(id: number, updatePlayerDto: UpdatePlayerDto) {
+    await this.findOne(id);
+
+    return await this.playerRepository.update(id, {
+      ...updatePlayerDto,
+    });
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return `This action removes a #${id} player`;
   }
 }
