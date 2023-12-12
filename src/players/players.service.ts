@@ -54,6 +54,7 @@ export class PlayersService {
   }
 
   async remove(id: number) {
-    return `This action removes a #${id} player`;
+    await this.findOne(id);
+    return await this.playerRepository.softDelete({ id });
   }
 }
