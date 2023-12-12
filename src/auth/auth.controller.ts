@@ -5,7 +5,7 @@ import { LoginDto } from './dto/login.dto';
 import { Role } from '../common/enums/role.enum';
 import { Auth } from './decorators/auth.decorator';
 import { UserActiveInterface } from '../common/interface/user-active.interface';
-import { ActiveUser } from 'src/common/decorators/active-user.decorator';
+import { ActiveUser } from '../common/decorators/active-user.decorator';
 import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('auth')
