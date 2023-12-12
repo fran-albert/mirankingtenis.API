@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { StatesModule } from './states/states.module';
 import { CitiesModule } from './cities/cities.module';
 import { RankingModule } from './ranking/ranking.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { RankingModule } from './ranking/ranking.module';
     StatesModule,
     CitiesModule,
     RankingModule,
+    CategoriesModule,
   ],
   controllers: [],
   providers: [],
