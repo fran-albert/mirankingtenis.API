@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Role } from '../../common/enums/role.enum';
 import { City } from 'src/cities/entities/city.entity';
+import { Category } from 'src/categories/entities/category.entity';
 
 @Entity()
 export class Player {
@@ -42,8 +43,11 @@ export class Player {
   @Column()
   photo: string;
 
-  @Column()
-  idCategory: number;
+  @ManyToOne(() => Category, (category) => category.players, {
+    nullable: false,
+  })
+  @JoinColumn({ name: 'idCategory' })
+  category: Category;
 
   @Column('simple-array')
   role: Role[];
