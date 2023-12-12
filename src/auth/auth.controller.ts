@@ -1,7 +1,12 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
+import { Role } from '../common/enums/role.enum';
+import { Auth } from './decorators/auth.decorator';
+import { UserActiveInterface } from '../common/interface/user-active.interface';
+import { ActiveUser } from 'src/common/decorators/active-user.decorator';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {
@@ -21,5 +26,12 @@ export class AuthController {
     loginDto: LoginDto,
   ) {
     return this.authService.login(loginDto);
+  }
+
+  @ApiBearerAuth()
+  @Get('profile')
+  @Auth(Role.PLAYER)
+  getProfile(@ActiveUser() user: UserActiveInterface) {
+    return this.authService.getProfile(user);
   }
 }
