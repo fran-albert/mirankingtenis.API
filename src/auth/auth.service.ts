@@ -31,6 +31,7 @@ export class AuthService {
       password: await bcryptjs.hash(registerDto.password, 10),
       city: { id: registerDto.idCity },
       role: [Role.PLAYER],
+      category: { id: registerDto.idCategory },
     };
 
     await this.playersService.create(newPlayer);
@@ -66,7 +67,7 @@ export class AuthService {
     };
   }
 
-  async getProfile({email, roles} : {email: string; roles:string}){
+  async getProfile({ email, roles }: { email: string; roles: string }) {
     return await this.playersService.findOneByEmail(email);
   }
 }
